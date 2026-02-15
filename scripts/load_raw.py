@@ -1,82 +1,119 @@
-import pandas as pd
 import os
+import pandas as pd
 import psycopg2
 from dotenv import load_dotenv
 
+# ---------------------------
+# Load environment
+# ---------------------------
 load_dotenv()
-
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
-    raise ValueError("DATABASE_URL missing in .env")
+    raise ValueError("DATABASE_URL not found in .env")
 
 conn = psycopg2.connect(DATABASE_URL)
 cursor = conn.cursor()
 
-print("Connected to Supabase Postgres.")
+print("Connected to DB.")
 
+# ---------------------------
 # Load CSV
-df = pd.read_csv("data/raw/hhs_hospital_capacity.csv")
-df.columns = df.columns.str.lower()
+# ---------------------------
+df = pd.read_csv(
+    "data/raw/hhs_hospital_capacity.csv",
+    low_memory=False
+)
 
-# Filter MA only
+# ---------------------------
+# Normalize column names
+# ---------------------------
+df.columns = df.columns.str.lower()
+df.columns = df.columns.str.replace("-", "_", regex=False)
+df.columns = df.columns.str.replace("+", "", regex=False)
+df.columns = df.columns.str.replace(" ", "_", regex=False)
+
+# ---------------------------
+# Filter Massachusetts only
+# ---------------------------
 df = df[df["state"] == "MA"]
 
-# Select required columns
-df = df[[
-    "hospital_pk",
-    "hospital_name",
-    "state",
-    "city",
-    "zip",
-    "fips_code",
-    "collection_week",
-    "total_icu_beds_7_day_avg",
-    "icu_beds_used_7_day_avg"
-]]
-
+# ---------------------------
 # Replace sentinel values
+# ---------------------------
 df.replace("-999,999", None, inplace=True)
 df.replace(-999999, None, inplace=True)
 
-# Convert ICU fields to numeric
-df["total_icu_beds_7_day_avg"] = pd.to_numeric(
-    df["total_icu_beds_7_day_avg"], errors="coerce"
+# ---------------------------
+# Convert collection_week to date
+# ---------------------------
+df["collection_week"] = pd.to_datetime(
+    df["collection_week"], errors="coerce"
 )
+df = df.dropna(subset=["collection_week"])
 
-df["icu_beds_used_7_day_avg"] = pd.to_numeric(
-    df["icu_beds_used_7_day_avg"], errors="coerce"
-)
+# ---------------------------
+# Get DB numeric columns
+# ---------------------------
+cursor.execute("""
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_name = 'raw_hhs_facility'
+    AND data_type = 'double precision';
+""")
 
-# Drop rows with missing ICU values
-df = df.dropna(subset=[
-    "total_icu_beds_7_day_avg",
-    "icu_beds_used_7_day_avg"
-])
+numeric_cols = [row[0] for row in cursor.fetchall()]
 
-records = df.values.tolist()
+# ---------------------------
+# Clean numeric formatting
+# ---------------------------
+for col in numeric_cols:
+    if col in df.columns:
+        df[col] = (
+            df[col]
+            .astype(str)
+            .str.replace(",", "", regex=False)
+            .replace("NaN", None)
+        )
+        df[col] = pd.to_numeric(df[col], errors="coerce")
 
-insert_query = """
-INSERT INTO raw_hhs_facility (
-    hospital_pk,
-    hospital_name,
-    state,
-    city,
-    zip,
-    fips_code,
-    collection_week,
-    total_icu_beds_7_day_avg,
-    icu_beds_used_7_day_avg
-)
-VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);
+# ---------------------------
+# Ensure only DB columns are inserted
+# ---------------------------
+cursor.execute("""
+    SELECT column_name 
+    FROM information_schema.columns
+    WHERE table_name = 'raw_hhs_facility';
+""")
+
+db_cols = [row[0] for row in cursor.fetchall()]
+
+df = df[[col for col in df.columns if col in db_cols]]
+
+print(f"Columns being inserted: {len(df.columns)}")
+
+records = df.to_dict("records")
+cols = df.columns.tolist()
+placeholders = ",".join(["%s"] * len(cols))
+
+insert_query = f"""
+INSERT INTO raw_hhs_facility ({",".join(cols)})
+VALUES ({placeholders});
 """
 
+# ---------------------------
 # Insert in chunks
-chunk_size = 1000
+# ---------------------------
+chunk_size = 500
+
 for i in range(0, len(records), chunk_size):
-    cursor.executemany(insert_query, records[i:i+chunk_size])
+    values = [
+        tuple(record[col] for col in cols)
+        for record in records[i:i+chunk_size]
+    ]
+    cursor.executemany(insert_query, values)
     conn.commit()
-    print(f"Inserted {i + chunk_size} rows")
+    print(f"Inserted up to {min(i + chunk_size, len(records))}")
 
 cursor.close()
 conn.close()
