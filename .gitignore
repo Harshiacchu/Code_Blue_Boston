@@ -1,6 +1,1 @@
-.env
-venv/
-__pycache__/
-data/raw/hhs_hospital_capacity.csv
-data/clean/boston_crime_data_with_predictions.csv
-*.csv
+frontend/.env
