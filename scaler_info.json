@@ -1,0 +1,45 @@
+{
+    "type": "<class 'sklearn.preprocessing._data.StandardScaler'>",
+    "features": [
+        "inpatient_occupancy_rate",
+        "inpatient_beds_used_7_day_avg",
+        "total_adult_patients_hospitalized_confirmed_covid_7_day_avg",
+        "staffed_icu_adult_patients_confirmed_and_suspected_covid_7_day_avg",
+        "covid_burden_rate",
+        "inpatient_beds_used_covid_7_day_avg",
+        "previous_day_admission_adult_covid_confirmed_7_day_sum",
+        "all_pediatric_inpatient_bed_occupied_7_day_avg",
+        "all_pediatric_inpatient_beds_7_day_avg",
+        "inpatient_beds_7_day_avg",
+        "previous_day_covid_ED_visits_7_day_sum",
+        "total_patients_hospitalized_confirmed_influenza_7_day_avg"
+    ],
+    "mean": [
+        1.73971874091628e-17,
+        5.294796168006069e-18,
+        -3.0255978102891826e-18,
+        4.160196989147626e-17,
+        -6.80759507315066e-18,
+        4.538396715433774e-18,
+        -6.051195620578365e-18,
+        3.0255978102891826e-18,
+        4.538396715433774e-18,
+        -1.0589592336012138e-17,
+        3.0255978102891826e-18,
+        1.0778692199155213e-17
+    ],
+    "scale": [
+        1.0,
+        1.0000000000000002,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+    ]
+}

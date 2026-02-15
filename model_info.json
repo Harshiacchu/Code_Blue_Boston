@@ -1,0 +1,36 @@
+{
+    "feature_cols": [
+        "inpatient_occupancy_rate",
+        "inpatient_beds_used_7_day_avg",
+        "total_adult_patients_hospitalized_confirmed_covid_7_day_avg",
+        "staffed_icu_adult_patients_confirmed_and_suspected_covid_7_day_avg",
+        "covid_burden_rate",
+        "inpatient_beds_used_covid_7_day_avg",
+        "previous_day_admission_adult_covid_confirmed_7_day_sum",
+        "all_pediatric_inpatient_bed_occupied_7_day_avg",
+        "all_pediatric_inpatient_beds_7_day_avg",
+        "inpatient_beds_7_day_avg",
+        "previous_day_covid_ED_visits_7_day_sum",
+        "total_patients_hospitalized_confirmed_influenza_7_day_avg"
+    ],
+    "training_info": {
+        "best_val_loss": 286.0850317009672,
+        "test_mae": 12.877482414245605,
+        "test_rmse": 17.044721603393555,
+        "test_r2": 0.31736600399017334,
+        "final_epoch": 21,
+        "date": "2026-02-15T03:20:30.389988"
+    },
+    "state_dict_keys": [
+        "lstm.weight_ih_l0",
+        "lstm.weight_hh_l0",
+        "lstm.bias_ih_l0",
+        "lstm.bias_hh_l0",
+        "lstm.weight_ih_l1",
+        "lstm.weight_hh_l1",
+        "lstm.bias_ih_l1",
+        "lstm.bias_hh_l1",
+        "fc.weight",
+        "fc.bias"
+    ]
+}
