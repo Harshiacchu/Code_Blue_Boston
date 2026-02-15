@@ -1,0 +1,592 @@
+/* ============================================================================
+   GOOGLE FONTS
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ============================================================================
+   GLOBAL STYLES - DARKER TEXT
+   ============================================================================ */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================================================
+   HIDE STREAMLIT BRANDING
+   ============================================================================ */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* ============================================================================
+   MAIN APP BACKGROUND - DARKER FOR CONTRAST
+   ============================================================================ */
+.stApp {
+    background: linear-gradient(135deg, #0A0F1E 0%, #1A1F2E 100%);
+}
+
+/* ============================================================================
+   TYPOGRAPHY - MUCH BRIGHTER/WHITER TEXT
+   ============================================================================ */
+h1 {
+    color: #FFFFFF !important;  /* Pure white */
+    font-weight: 800 !important;
+    font-size: 2.5rem !important;
+    margin-bottom: 0.5rem !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+h2 {
+    color: #F8FAFC !important;  /* Off-white */
+    font-weight: 700 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+h3 {
+    color: #F1F5F9 !important;  /* Light gray */
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+h4 {
+    color: #E2E8F0 !important;
+    font-weight: 600 !important;
+}
+
+p, span, div {
+    color: #E2E8F0 !important;  /* Much lighter gray */
+    line-height: 1.6 !important;
+}
+
+/* Force all text elements to be brighter */
+.stMarkdown, .stMarkdown p, .stMarkdown span {
+    color: #E2E8F0 !important;
+}
+
+/* ============================================================================
+   TAB STYLING - DARKER BACKGROUND, BRIGHTER TEXT
+   ============================================================================ */
+button[data-baseweb="tab"] {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    border-radius: 8px 8px 0 0 !important;
+    padding: 14px 28px !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    margin-right: 8px !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid rgba(148, 163, 184, 0.3) !important;
+    color: #CBD5E1 !important;  /* Lighter text */
+}
+
+button[data-baseweb="tab"]:hover {
+    background-color: rgba(6, 182, 212, 0.2) !important;
+    border-color: rgba(6, 182, 212, 0.6) !important;
+    color: #F1F5F9 !important;  /* Even lighter on hover */
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    background: linear-gradient(135deg, #06B6D4 0%, #0284C7 100%) !important;
+    color: #FFFFFF !important;  /* Pure white for active tab */
+    border-color: #06B6D4 !important;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.5) !important;
+    font-weight: 800 !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab-panel"] {
+    padding-top: 20px;
+}
+
+[data-testid="stTabs"] [role="tablist"] {
+    gap: 8px;
+    border-bottom: 2px solid rgba(148, 163, 184, 0.3);
+    padding-bottom: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    padding: 8px;
+    border-radius: 10px 10px 0 0;
+}
+
+/* ============================================================================
+   SELECTBOX STYLING - DARKER WITH BRIGHTER TEXT
+   ============================================================================ */
+[data-baseweb="select"] {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-radius: 10px !important;
+}
+
+[data-baseweb="select"] > div {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 2px solid rgba(6, 182, 212, 0.5) !important;
+    color: #F1F5F9 !important;  /* Brighter text */
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+
+[data-baseweb="select"] span {
+    color: #F1F5F9 !important;
+}
+
+/* Dropdown options */
+[role="listbox"] {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid rgba(6, 182, 212, 0.3) !important;
+}
+
+[role="option"] {
+    color: #E2E8F0 !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+}
+
+[role="option"]:hover {
+    background: rgba(6, 182, 212, 0.2) !important;
+    color: #FFFFFF !important;
+}
+
+/* ============================================================================
+   BUTTON STYLING - MORE CONTRAST
+   ============================================================================ */
+.stButton button {
+    background: linear-gradient(135deg, #06B6D4 0%, #0284C7 100%);
+    color: #FFFFFF !important;  /* Pure white text */
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.stButton button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(6, 182, 212, 0.6);
+    background: linear-gradient(135deg, #0891B2 0%, #0369A1 100%);
+}
+
+.stButton button:active {
+    transform: translateY(0);
+}
+
+/* Primary button variant */
+.stButton button[kind="primary"] {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.stButton button[kind="primary"]:hover {
+    box-shadow: 0 6px 25px rgba(16, 185, 129, 0.6);
+}
+
+/* ============================================================================
+   METRIC CARDS - DARKER BACKGROUND, BRIGHTER TEXT
+   ============================================================================ */
+[data-testid="stMetricValue"] {
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;  /* Pure white for numbers */
+    text-shadow: 0 2px 8px rgba(6, 182, 212, 0.5);
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 1rem !important;
+    color: #CBD5E1 !important;  /* Lighter label text */
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="metric-container"] {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+[data-testid="metric-container"]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 30px rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.5);
+}
+
+/* ============================================================================
+   CRITICAL ALERT BANNER - BRIGHTER TEXT
+   ============================================================================ */
+.alert-critical {
+    background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 6px solid #FEE2E2;
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5);
+    animation: pulse-alert 2s infinite;
+    margin: 20px 0;
+}
+
+@keyframes pulse-alert {
+    0%, 100% {
+        box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5);
+    }
+    50% {
+        box-shadow: 0 8px 40px rgba(220, 38, 38, 0.7);
+    }
+}
+
+.alert-critical h3 {
+    color: #FFFFFF !important;  /* Pure white */
+    margin: 0 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.alert-critical p {
+    color: #FEE2E2 !important;
+    margin: 0 !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+}
+
+/* ============================================================================
+   INFO/SUCCESS/WARNING/ERROR BOXES - BRIGHTER TEXT
+   ============================================================================ */
+.stAlert {
+    border-radius: 10px;
+    border-left: 4px solid;
+    backdrop-filter: blur(10px);
+    font-weight: 600 !important;
+}
+
+/* Success */
+.stSuccess {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-left-color: #10B981 !important;
+    color: #D1FAE5 !important;
+}
+
+.stSuccess [data-testid="stMarkdownContainer"] {
+    color: #D1FAE5 !important;
+}
+
+/* Info */
+.stInfo {
+    background: rgba(6, 182, 212, 0.15) !important;
+    border-left-color: #06B6D4 !important;
+    color: #CFFAFE !important;
+}
+
+.stInfo [data-testid="stMarkdownContainer"] {
+    color: #CFFAFE !important;
+}
+
+/* Warning */
+.stWarning {
+    background: rgba(249, 115, 22, 0.15) !important;
+    border-left-color: #F97316 !important;
+    color: #FED7AA !important;
+}
+
+.stWarning [data-testid="stMarkdownContainer"] {
+    color: #FED7AA !important;
+}
+
+/* Error */
+.stError {
+    background: rgba(220, 38, 38, 0.15) !important;
+    border-left-color: #DC2626 !important;
+    color: #FEE2E2 !important;
+}
+
+.stError [data-testid="stMarkdownContainer"] {
+    color: #FEE2E2 !important;
+}
+
+/* ============================================================================
+   RECOMMENDATION CARDS - BRIGHTER TEXT
+   ============================================================================ */
+.recommendation-card {
+    background: rgba(6, 182, 212, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 28px;
+    border: 2px solid rgba(6, 182, 212, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(6, 182, 212, 0.25);
+    border-color: rgba(6, 182, 212, 0.6);
+}
+
+.recommendation-card h4 {
+    font-size: 1.3rem;
+    color: #06B6D4 !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.recommendation-card p, .recommendation-card strong, .recommendation-card span {
+    color: #E2E8F0 !important;
+    font-weight: 500 !important;
+}
+
+/* ============================================================================
+   STAT BOXES (inside recommendation)
+   ============================================================================ */
+.stat-box {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 16px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid rgba(100, 116, 139, 0.4);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    border-color: rgba(6, 182, 212, 0.5);
+    transform: translateY(-2px);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #CBD5E1 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    font-weight: 700 !important;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 800 !important;
+    margin-top: 6px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stat-value.danger {
+    color: #FCA5A5 !important;
+}
+
+.stat-value.success {
+    color: #86EFAC !important;
+}
+
+.stat-value.warning {
+    color: #FCD34D !important;
+}
+
+/* ============================================================================
+   PUBLIC PORTAL METRICS - BRIGHTER TEXT
+   ============================================================================ */
+.public-metric {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 28px;
+    border-radius: 12px;
+    border: 2px solid rgba(148, 163, 184, 0.3);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.public-metric:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(148, 163, 184, 0.5);
+}
+
+.public-metric-label {
+    font-size: 0.9rem;
+    color: #CBD5E1 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    font-weight: 700 !important;
+}
+
+.public-metric-value {
+    font-size: 2.8rem;
+    font-weight: 800 !important;
+    margin: 12px 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.public-metric-desc {
+    font-size: 0.95rem;
+    color: #94A3B8 !important;
+    margin-top: 8px;
+    font-weight: 500 !important;
+}
+
+/* ============================================================================
+   STRAIN GAUGE (Public Portal) - BRIGHTER TEXT
+   ============================================================================ */
+.strain-gauge-container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.strain-gauge {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 30px;
+}
+
+.gauge-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        #10B981 0deg 120deg,
+        #F97316 120deg 240deg,
+        #DC2626 240deg 360deg
+    );
+    padding: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.gauge-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #0F172A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.gauge-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.strain-level {
+    font-size: 2.8rem;
+    font-weight: 900 !important;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.strain-level.low {
+    color: #10B981 !important;
+}
+
+.strain-level.elevated {
+    color: #F97316 !important;
+}
+
+.strain-level.high {
+    color: #DC2626 !important;
+}
+
+.strain-value {
+    font-size: 1.4rem;
+    color: #CBD5E1 !important;
+    font-weight: 700 !important;
+}
+
+.trend-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px;
+    background: rgba(249, 115, 22, 0.15);
+    border-radius: 10px;
+    border: 2px solid rgba(249, 115, 22, 0.4);
+}
+
+.trend-indicator span {
+    color: #FED7AA !important;
+    font-weight: 700 !important;
+}
+
+/* ============================================================================
+   DIVIDER
+   ============================================================================ */
+hr {
+    border-color: rgba(203, 213, 225, 0.3) !important;
+    margin: 2rem 0 !important;
+}
+
+/* ============================================================================
+   CAPTIONS/FOOTER
+   ============================================================================ */
+.stCaption {
+    color: #94A3B8 !important;
+    text-align: center;
+    font-weight: 500 !important;
+}
+
+/* ============================================================================
+   EXPANDER STYLING - BRIGHTER TEXT
+   ============================================================================ */
+[data-testid="stExpander"] {
+    background: rgba(15, 23, 42, 0.6);
+    border: 2px solid rgba(148, 163, 184, 0.3);
+    border-radius: 10px;
+}
+
+[data-testid="stExpander"] summary {
+    color: #F1F5F9 !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+}
+
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] {
+    color: #E2E8F0 !important;
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING
+   ============================================================================ */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.6);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.8);
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    [data-testid="stMetricValue"] {
+        font-size: 1.8rem !important;
+    }
+    
+    .strain-gauge {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .strain-level {
+        font-size: 2.2rem;
+    }
+}
